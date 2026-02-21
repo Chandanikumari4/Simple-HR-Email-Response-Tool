@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HR Email Tool</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+    <h2>HR Candidate Email Response Tool</h2>
+
+    <form action="/preview-page" method="POST">
+
+        <label>Candidate Name</label>
+        <input type="text" name="name" required>
+
+        <label>Candidate Email</label>
+        <input type="email" name="email" required>
+
+        <label>Position Applied</label>
+        <input type="text" name="position" required>
+
+        <label>Status</label>
+        <div class="radio-group">
+            <input type="radio" name="status" value="Selected" required> Selected
+            <input type="radio" name="status" value="Rejected"> Rejected
+        </div>
+
+        <button type="submit">Preview Email</button>
+
+    </form>
+</div>
+
+</body>
+</html>

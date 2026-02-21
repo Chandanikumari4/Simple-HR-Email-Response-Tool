@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Email Preview</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>Email Preview</h2>
+
+    <pre>{{ message }}</pre>
+
+    <button onclick="sendEmail()">Send Email</button>
+    <button onclick="goBack()">Edit Details</button>
+
+    <p id="result"></p>
+
+</div>
+
+<script>
+
+const data = {
+    name: "{{ name }}",
+    email: "{{ email }}",
+    position: "{{ position }}",
+    status: "{{ status }}"
+}
+
+async function sendEmail(){
+    const res = await fetch("/send", {
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body: JSON.stringify(data)
+    })
+
+    const result = await res.json()
+    document.getElementById("result").innerText = result.message
+}
+
+function goBack(){
+    window.history.back()
+}
+
+</script>
+
+</body>
+</html>
